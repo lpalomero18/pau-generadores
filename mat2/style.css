@@ -1,0 +1,231 @@
+:root {
+  --paper: #ffffff;
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --accent: #8a1f2d;
+  --line: #d8d3ca;
+  --badge-bg: #f1ede4;
+  --page-w: 210mm;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #e9e5db;
+  font-family: "Georgia", "Iowan Old Style", serif;
+  color: var(--ink);
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.5rem;
+  background: #2c2620;
+  color: #f1ede4;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  flex-wrap: wrap;
+}
+
+.toolbar h1 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.toolbar-buttons { display: flex; gap: 0.6rem; }
+
+button {
+  font-family: inherit;
+  font-size: 0.92rem;
+  padding: 0.55rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #55493a;
+  background: #4a3f30;
+  color: #f1ede4;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+button:hover { background: #5c4e3c; }
+button:active { transform: translateY(1px); }
+
+.menu-exportar { position: relative; }
+
+.btn-exportar-toggle { background: var(--accent); border-color: #6a1620; }
+.btn-exportar-toggle:hover { background: #a22532; }
+
+.menu-exportar-opciones {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 15em;
+  background: #2c2620;
+  border: 1px solid #55493a;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  padding: 0.4rem;
+  gap: 0.2rem;
+  z-index: 20;
+}
+
+.menu-exportar-item {
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  text-align: left;
+  padding: 0.5rem 0.7rem;
+}
+.menu-exportar-item:hover { background: #4a3f30; }
+
+main#examen {
+  max-width: var(--page-w);
+  margin: 2rem auto 4rem;
+  background: var(--paper);
+  padding: 20mm 16mm;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  border-radius: 2px;
+}
+
+.cargando { text-align: center; color: var(--muted); padding: 3rem 0; font-family: sans-serif; }
+
+.examen-cabecera {
+  text-align: center;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+.examen-cabecera h2 { margin: 0 0 0.3rem; font-size: 1.4rem; letter-spacing: 0.02em; }
+.examen-instrucciones {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 46em;
+  margin: 0.4rem auto 0;
+}
+
+.bloque-titulo {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin: 1.6rem 0 0.4rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.25rem;
+}
+
+.problema {
+  position: relative;
+  padding: 0.9rem 0 1.1rem;
+  border-bottom: 1px dashed var(--line);
+  break-inside: avoid;
+}
+.problema:last-child { border-bottom: none; }
+
+.problema-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.8rem;
+  margin-bottom: 0.35rem;
+}
+
+.problema-titulo {
+  font-size: 1.02rem;
+  margin: 0;
+  font-weight: 700;
+  flex: 1 1 auto;
+  min-width: 12em;
+}
+
+.problema-cabecera-derecha {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.problema-meta {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.72rem;
+  color: var(--muted);
+  background: var(--badge-bg);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  white-space: nowrap;
+}
+
+.problema-cuerpo {
+  font-size: 0.98rem;
+  line-height: 1.62;
+  text-align: justify;
+}
+
+.problema-cuerpo p { margin: 0 0 0.5rem; }
+.problema-cuerpo p:last-child { margin-bottom: 0; }
+
+.problema-apartados {
+  margin: 0.3rem 0 0;
+  padding-left: 1.6em;
+  list-style: none;
+  counter-reset: apartado;
+}
+.problema-apartados > li {
+  position: relative;
+  margin: 0.35rem 0;
+  counter-increment: apartado;
+}
+.problema-apartados > li::before {
+  content: counter(apartado, lower-alpha) ") ";
+  position: absolute;
+  left: -1.6em;
+  font-weight: 700;
+}
+
+.problema-figura {
+  display: block;
+  max-width: 70%;
+  max-height: 220px;
+  margin: 0.7rem auto 0.2rem;
+  border: 1px solid var(--line);
+  padding: 6px;
+  background: #fff;
+}
+
+.btn-recambiar {
+  font-size: 0.72rem;
+  padding: 0.3rem 0.6rem;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  white-space: nowrap;
+}
+.btn-recambiar:hover { background: var(--badge-bg); color: var(--ink); }
+
+.katex { font-size: 1.02em; }
+.katex-display { margin: 0.6em 0; overflow-x: auto; overflow-y: hidden; }
+
+@media (max-width: 700px) {
+  main#examen { padding: 6mm 5mm; margin: 0.5rem; }
+  .problema-cabecera { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  .problema-cabecera-derecha { width: 100%; justify-content: space-between; }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; }
+  main#examen { box-shadow: none; margin: 0; max-width: none; padding: 8mm; }
+}

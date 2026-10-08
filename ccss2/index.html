@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generador de exámenes PAU · Matemáticas CCSS II</title>
+<link rel="stylesheet" href="lib/katex/katex.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="toolbar no-print">
+  <h1>Generador de exámenes PAU · Matemáticas CCSS II</h1>
+  <div class="toolbar-buttons">
+    <button id="btn-nuevo">🔀 Generar examen nuevo</button>
+    <div class="menu-exportar">
+      <button id="btn-exportar-toggle" class="btn-exportar-toggle">⬇ Exportar ▾</button>
+      <div id="menu-exportar-opciones" class="menu-exportar-opciones" hidden>
+        <button id="btn-pdf" class="menu-exportar-item">📄 Descargar PDF</button>
+        <button id="btn-docx" class="menu-exportar-item">📝 Descargar DOCX</button>
+        <button id="btn-latex" class="menu-exportar-item">🧮 Descargar LaTeX</button>
+        <button id="btn-drive" class="menu-exportar-item">☁️ Guardar en Google Drive</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="examen">
+  <p class="cargando">Cargando banco de problemas…</p>
+</main>
+
+<template id="tpl-problema">
+  <section class="problema">
+    <div class="problema-cabecera">
+      <h2 class="problema-titulo"></h2>
+      <div class="problema-cabecera-derecha">
+        <div class="problema-meta"></div>
+        <button class="btn-recambiar no-print" title="Cambiar por otro problema del mismo tipo">🔁 Cambiar</button>
+      </div>
+    </div>
+    <div class="problema-cuerpo"></div>
+    <img class="problema-figura" hidden>
+  </section>
+</template>
+
+<script src="lib/katex/katex.min.js"></script>
+<script src="lib/katex/auto-render.min.js"></script>
+<script src="lib/jspdf.umd.min.js"></script>
+<script src="lib/html2canvas.min.js"></script>
+<script src="lib/jszip.min.js"></script>
+<script src="lib/mathjax/tex-mml-chtml.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script type="module" src="docx-export.js"></script>
+<script src="latex-export.js"></script>
+<script src="drive-export.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
