@@ -56,6 +56,28 @@ button {
 button:hover { background: #5c4e3c; }
 button:active { transform: translateY(1px); }
 
+.toolbar-buttons { align-items: center; flex-wrap: wrap; }
+
+.toolbar-campo {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: #d9d2c3;
+}
+.toolbar-campo[hidden] { display: none; }
+.toolbar-campo select,
+.toolbar-campo input {
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #55493a;
+  background: #4a3f30;
+  color: #f1ede4;
+}
+.toolbar-campo input { width: 4.2em; }
+
 .menu-exportar { position: relative; }
 
 .btn-exportar-toggle { background: var(--accent); border-color: #6a1620; }

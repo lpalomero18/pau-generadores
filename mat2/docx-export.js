@@ -178,19 +178,16 @@ async function bloqueProblema(tituloTexto, problema, zip, relsMap, contadorImg) 
 
 async function generarBodyXml(examenActual, PLANTILLA, NOMBRE_COLECCION, zip, relsMap) {
   let xml = "";
-  xml += parrafoTitulo("Prueba de Acceso a la Universidad — Matemáticas II", 28);
-  xml += parrafoMeta(
-    "Examen compuesto por problemas de distintas comunidades autónomas (convocatorias 2025–2026). " +
-    "Consta de 5 ejercicios de 2 puntos cada uno: los ejercicios 1, 2 y 3 son obligatorios; " +
-    "en los ejercicios 4 y 5 responde solo a una de las dos opciones propuestas."
-  );
+  const info = window.PauExamen.describir(PLANTILLA);
+  xml += parrafoTitulo(info.titulo, 28);
+  xml += parrafoMeta(info.instrucciones);
 
   const contadorImg = { n: 0 };
   for (const slot of PLANTILLA) {
     if (slot.tipo === "obligatorio") {
       const p = examenActual[slot.key];
       if (!p) continue;
-      xml += await bloqueProblema(`${slot.label} — ${NOMBRE_COLECCION[slot.coleccion]} (2 puntos)`, p, zip, relsMap, contadorImg);
+      xml += await bloqueProblema(`${slot.label} — ${NOMBRE_COLECCION[slot.coleccion]} (${window.PauExamen.puntos(slot.puntos ?? 2)})`, p, zip, relsMap, contadorImg);
     } else {
       xml += parrafoTitulo(slot.titulo, 20);
       const letras = ["Opción A", "Opción B"];

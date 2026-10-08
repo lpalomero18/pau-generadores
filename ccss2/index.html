@@ -12,6 +12,12 @@
 <header class="toolbar no-print">
   <h1>Generador de exámenes PAU · Matemáticas CCSS II</h1>
   <div class="toolbar-buttons">
+    <label class="toolbar-campo">Tipo de examen
+      <select id="sel-modo"></select>
+    </label>
+    <label class="toolbar-campo" id="lbl-num" hidden>Nº de ejercicios
+      <input id="num-ejercicios" type="number" min="1" max="10" value="5">
+    </label>
     <button id="btn-nuevo">🔀 Generar examen nuevo</button>
     <div class="menu-exportar">
       <button id="btn-exportar-toggle" class="btn-exportar-toggle">⬇ Exportar ▾</button>

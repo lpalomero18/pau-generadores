@@ -7,22 +7,67 @@ const NOMBRE_COLECCION = {
   probabilidad: "Probabilidad y Estadística",
 };
 
-// Estructura fija del examen: 3 ejercicios obligatorios + 2 bloques optativos.
-const PLANTILLA = [
-  { key: "ej1", label: "Ejercicio 1", coleccion: "algebra", tipo: "obligatorio" },
-  { key: "ej2", label: "Ejercicio 2", coleccion: "analisis", tipo: "obligatorio" },
-  { key: "ej3", label: "Ejercicio 3", coleccion: "geometria", tipo: "obligatorio" },
+const NOMBRE_ASIGNATURA = "Matemáticas II";
+
+// Examen completo: 3 ejercicios obligatorios + 2 bloques optativos.
+const PLANTILLA_COMPLETA = [
+  { key: "ej1", label: "Ejercicio 1", coleccion: "algebra", tipo: "obligatorio", puntos: 2 },
+  { key: "ej2", label: "Ejercicio 2", coleccion: "analisis", tipo: "obligatorio", puntos: 2 },
+  { key: "ej3", label: "Ejercicio 3", coleccion: "geometria", tipo: "obligatorio", puntos: 2 },
   {
-    key: "ej4", label: "Ejercicio 4", coleccion: "probabilidad", tipo: "bloque",
+    key: "ej4", label: "Ejercicio 4", coleccion: "probabilidad", tipo: "bloque", puntos: 2,
     titulo: "Ejercicio 4 — Probabilidad y Estadística (elige una opción, 2 puntos)",
     opciones: ["ej4a", "ej4b"],
   },
   {
-    key: "ej5", label: "Ejercicio 5", coleccion: "analisis", tipo: "bloque",
+    key: "ej5", label: "Ejercicio 5", coleccion: "analisis", tipo: "bloque", puntos: 2,
     titulo: "Ejercicio 5 — Análisis (elige una opción, 2 puntos)",
     opciones: ["ej5a", "ej5b"],
   },
 ];
+
+// Plantilla activa (cambia según el "tipo de examen" elegido en la barra superior).
+let PLANTILLA = PLANTILLA_COMPLETA;
+
+function formatoPuntos(n) {
+  return String(Math.round(n * 100) / 100).replace(".", ",");
+}
+
+function etiquetaPuntos(n) {
+  return `${formatoPuntos(n)} ${n === 1 ? "punto" : "puntos"}`;
+}
+
+// Examen de un único bloque temático: n ejercicios obligatorios de la misma colección.
+function plantillaBloqueUnico(coleccion, n) {
+  return Array.from({ length: n }, (_, i) => ({
+    key: `ej${i + 1}`, label: `Ejercicio ${i + 1}`, coleccion, tipo: "obligatorio", puntos: 10 / n,
+  }));
+}
+
+// Texto común (título e instrucciones) que usan la pantalla y las exportaciones.
+function describirExamen(plantilla) {
+  const coleccion = plantilla[0].coleccion;
+  const esBloqueUnico = plantilla.every((s) => s.tipo === "obligatorio" && s.coleccion === coleccion);
+  const base = "Prueba de Acceso a la Universidad — " + NOMBRE_ASIGNATURA;
+  if (esBloqueUnico) {
+    const n = plantilla.length;
+    return {
+      titulo: `${base} · ${NOMBRE_COLECCION[coleccion]}`,
+      instrucciones:
+        `Examen de ${NOMBRE_COLECCION[coleccion]} compuesto por problemas de distintas comunidades autónomas ` +
+        `(convocatorias 2025–2026). Consta de ${n} ejercicio${n === 1 ? "" : "s"} ` +
+        `de ${etiquetaPuntos(10 / n)} cada uno, todos obligatorios.`,
+    };
+  }
+  return {
+    titulo: base,
+    instrucciones:
+      "Examen compuesto por problemas de distintas comunidades autónomas (convocatorias 2025–2026). " +
+      "Consta de 5 ejercicios de 2 puntos cada uno: los ejercicios 1, 2 y 3 son obligatorios; " +
+      "en los ejercicios 4 y 5 responde solo a una de las dos opciones propuestas.",
+  };
+}
+window.PauExamen = { describir: describirExamen, puntos: etiquetaPuntos };
 
 let BANCO = [];
 let examenActual = {}; // slotKey -> problema
@@ -124,13 +169,13 @@ function renderExamen() {
 
   const cabecera = document.createElement("div");
   cabecera.className = "examen-cabecera";
-  cabecera.innerHTML = `
-    <h2>Prueba de Acceso a la Universidad — Matemáticas II</h2>
-    <p class="examen-instrucciones">
-      Examen compuesto por problemas de distintas comunidades autónomas (convocatorias 2025–2026).
-      Consta de 5 ejercicios de 2 puntos cada uno: los ejercicios 1, 2 y 3 son obligatorios;
-      en los ejercicios 4 y 5 responde solo a una de las dos opciones propuestas.
-    </p>`;
+  const info = describirExamen(PLANTILLA);
+  const h2 = document.createElement("h2");
+  h2.textContent = info.titulo;
+  const instr = document.createElement("p");
+  instr.className = "examen-instrucciones";
+  instr.textContent = info.instrucciones;
+  cabecera.append(h2, instr);
   main.appendChild(cabecera);
 
   for (const slot of PLANTILLA) {
@@ -138,7 +183,7 @@ function renderExamen() {
       const p = examenActual[slot.key];
       if (!p) continue;
       main.appendChild(
-        crearNodoProblema(`${slot.label} — ${NOMBRE_COLECCION[slot.coleccion]} (2 puntos)`, p, slot.key, slot.coleccion)
+        crearNodoProblema(`${slot.label} — ${NOMBRE_COLECCION[slot.coleccion]} (${etiquetaPuntos(slot.puntos ?? 2)})`, p, slot.key, slot.coleccion)
       );
     } else {
       const tituloBloque = document.createElement("div");
@@ -261,10 +306,37 @@ function iniciarMenuExportar() {
   });
 }
 
+function iniciarSelectorTipo() {
+  const sel = document.getElementById("sel-modo");
+  const lblNum = document.getElementById("lbl-num");
+  const num = document.getElementById("num-ejercicios");
+
+  sel.add(new Option("Examen completo (5 ejercicios)", "completo"));
+  for (const [clave, nombre] of Object.entries(NOMBRE_COLECCION)) {
+    sel.add(new Option(`Solo ${nombre}`, clave));
+  }
+
+  function aplicar() {
+    if (sel.value === "completo") {
+      PLANTILLA = PLANTILLA_COMPLETA;
+      lblNum.hidden = true;
+    } else {
+      const n = Math.min(10, Math.max(1, parseInt(num.value, 10) || 5));
+      num.value = n;
+      PLANTILLA = plantillaBloqueUnico(sel.value, n);
+      lblNum.hidden = false;
+    }
+    generarExamen();
+  }
+  sel.addEventListener("change", aplicar);
+  num.addEventListener("change", aplicar);
+}
+
 async function iniciar() {
   const resp = await fetch("problems.json");
   const datos = await resp.json();
   BANCO = datos.problemas;
+  iniciarSelectorTipo();
   generarExamen();
   document.getElementById("btn-nuevo").addEventListener("click", generarExamen);
   document.getElementById("btn-pdf").addEventListener("click", descargarPDF);

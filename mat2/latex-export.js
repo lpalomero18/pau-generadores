@@ -62,7 +62,7 @@ function generarLatex(examenActual, PLANTILLA, NOMBRE_COLECCION) {
     if (slot.tipo === "obligatorio") {
       const p = examenActual[slot.key];
       if (!p) continue;
-      cuerpo += bloqueProblema(`${slot.label} --- ${NOMBRE_COLECCION[slot.coleccion]} (2 puntos)`, p, imagenesUsadas);
+      cuerpo += bloqueProblema(`${slot.label} --- ${NOMBRE_COLECCION[slot.coleccion]} (${window.PauExamen.puntos(slot.puntos ?? 2)})`, p, imagenesUsadas);
     } else {
       cuerpo += `\\subsection*{${escLatex(slot.titulo)}}\n\n`;
       const letras = ["Opción A", "Opción B"];
@@ -78,6 +78,11 @@ function generarLatex(examenActual, PLANTILLA, NOMBRE_COLECCION) {
     ? `% Este examen usa ${imagenesUsadas.length} figura(s). Si has descargado el .zip, la carpeta\n% "img/" ya está junto a este archivo y \\includegraphics las encontrará directamente.\n`
     : "";
 
+  const info = window.PauExamen.describir(PLANTILLA);
+  const aTex = (t) => escLatex(t).replace(/—/g, "---").replace(/–/g, "--").replace(/·/g, "\\textperiodcentered{}");
+  const tituloTex = aTex(info.titulo);
+  const instruccionesTex = aTex(info.instrucciones);
+
   const tex = `% Generado automáticamente por el mezclador de exámenes PAU Matemáticas II
 ${notaImagenes}\\documentclass[11pt,a4paper]{article}
 \\usepackage[utf8]{inputenc}
@@ -89,16 +94,14 @@ ${notaImagenes}\\documentclass[11pt,a4paper]{article}
 \\usepackage{graphicx}
 \\usepackage{parskip}
 
-\\title{Prueba de Acceso a la Universidad --- Matemáticas II}
+\\title{${tituloTex}}
 \\date{}
 \\author{}
 
 \\begin{document}
 \\maketitle
 
-\\noindent Examen compuesto por problemas de distintas comunidades autónomas (convocatorias 2025--2026).
-Consta de 5 ejercicios de 2 puntos cada uno: los ejercicios 1, 2 y 3 son obligatorios;
-en los ejercicios 4 y 5 responde solo a una de las dos opciones propuestas.
+\\noindent ${instruccionesTex}
 
 \\bigskip
 
