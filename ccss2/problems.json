@@ -713,7 +713,7 @@
   },
   {
    "id": "AST-2025-ord-02B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Asturias",
    "universidad": "Universidad de Oviedo",
    "anio": 2025,
@@ -873,7 +873,7 @@
   },
   {
    "id": "AST-2025-ext-02B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Asturias",
    "universidad": "Universidad de Oviedo",
    "anio": 2025,
@@ -1036,7 +1036,7 @@
   },
   {
    "id": "AST-2026-ord-02B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Asturias",
    "universidad": "Universidad de Oviedo",
    "anio": 2026,
@@ -1803,7 +1803,7 @@
   },
   {
    "id": "CAN-2025-ord-04B",
-   "coleccion": "programacion_lineal",
+   "coleccion": "algebra",
    "comunidad": "Canarias",
    "universidad": "Distrito Universitario de Canarias",
    "anio": 2025,
@@ -1914,7 +1914,7 @@
   },
   {
    "id": "CAN-2025-ext-04B",
-   "coleccion": "programacion_lineal",
+   "coleccion": "algebra",
    "comunidad": "Canarias",
    "universidad": "Distrito Universitario de Canarias",
    "anio": 2025,
@@ -2008,7 +2008,7 @@
   },
   {
    "id": "CAN-2026-ord-04B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Canarias",
    "universidad": "Distrito Universitario de Canarias",
    "anio": 2026,
@@ -2098,7 +2098,7 @@
   },
   {
    "id": "CAN-2026-ext-04B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Canarias",
    "universidad": "Distrito Universitario de Canarias",
    "anio": 2026,
@@ -2131,7 +2131,7 @@
   },
   {
    "id": "CANT-2025-ord-01B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Cantabria",
    "universidad": "Universidad de Cantabria",
    "anio": 2025,
@@ -2210,7 +2210,7 @@
   },
   {
    "id": "CANT-2025-ext-01B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Cantabria",
    "universidad": "Universidad de Cantabria",
    "anio": 2025,
@@ -2289,7 +2289,7 @@
   },
   {
    "id": "CANT-2026-ord-01B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Cantabria",
    "universidad": "Universidad de Cantabria",
    "anio": 2026,
@@ -2369,7 +2369,7 @@
   },
   {
    "id": "CANT-2026-ext-01B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Cantabria",
    "universidad": "Universidad de Cantabria",
    "anio": 2026,
@@ -2874,7 +2874,7 @@
   },
   {
    "id": "CV-2025-ord-01B",
-   "coleccion": "programacion_lineal",
+   "coleccion": "algebra",
    "comunidad": "Comunidad Valenciana",
    "universidad": "Universitats de la Comunitat Valenciana",
    "anio": 2025,
@@ -3031,7 +3031,7 @@
   },
   {
    "id": "CV-2026-ord-01B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Comunidad Valenciana",
    "universidad": "Universitats de la Comunitat Valenciana",
    "anio": 2026,
@@ -3545,7 +3545,7 @@
   },
   {
    "id": "GAL-2025-ord-02B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Galicia",
    "universidad": "CIUG (Comisión Interuniversitaria de Galicia)",
    "anio": 2025,
@@ -3654,7 +3654,7 @@
   },
   {
    "id": "GAL-2025-ext-02B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Galicia",
    "universidad": "CIUG (Comisión Interuniversitaria de Galicia)",
    "anio": 2025,
@@ -3942,7 +3942,7 @@
   },
   {
    "id": "GAL-2026-ext-05B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Galicia",
    "universidad": "CIUG (Comisión Interuniversitaria de Galicia)",
    "anio": 2026,
@@ -4476,7 +4476,7 @@
   },
   {
    "id": "MAD-2025-ext-02B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Madrid",
    "universidad": "Universidades de Madrid",
    "anio": 2025,
@@ -4614,7 +4614,7 @@
   },
   {
    "id": "MAD-2026-ord-03B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Madrid",
    "universidad": "Universidades de Madrid",
    "anio": 2026,
@@ -4783,7 +4783,7 @@
   },
   {
    "id": "MUR-2025-ord-01B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Murcia",
    "universidad": "Universidad de Murcia / UPCT",
    "anio": 2025,
@@ -4915,7 +4915,7 @@
   },
   {
    "id": "MUR-2025-ext-01B",
-   "coleccion": "algebra",
+   "coleccion": "programacion_lineal",
    "comunidad": "Murcia",
    "universidad": "Universidad de Murcia / UPCT",
    "anio": 2025,
@@ -5401,7 +5401,7 @@
   },
   {
    "id": "NAV-2026-ext-04B",
-   "coleccion": "programacion_lineal",
+   "coleccion": "algebra",
    "comunidad": "Navarra",
    "universidad": "Universidad Pública de Navarra",
    "anio": 2026,
